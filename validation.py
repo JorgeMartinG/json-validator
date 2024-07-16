@@ -23,7 +23,7 @@ def validate(dir_name: str) -> None:
 
     for file in json_files:
         try:
-            with file.open('r', encoding='utf-8') as f:
+            with file.open('r') as f:
                 json.load(f)
             print(f'{file}: JSON is valid')
             validate = True

@@ -56,9 +56,24 @@ In addition, it will show which JSON files contain errors.
 ### Option 2: Validation with GitLab CD/CI pipeline. 
 _(Recommended)_
 
-The same structure and project has been used except that, in this case, the <a href="./.gitlab-ci.yml">.gitlab-ci.yml</a> file has been added to the project root to define the pipeline.
+The same structure and project has been used except that, in this case, the **.gitlab-ci.yml** file has been added to the project root to define the pipeline.
 
 GitLab CI/CD Pipeline Configuration
+
+```yaml
+stages:
+  - validate
+
+validate_json:
+  stage: validate
+  image: python:3.9
+  script:
+    - pip install -r requirements.txt || true
+    - python validation.py
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main" || $CI_COMMIT_REF_NAME == "master"'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
+```
 
 The following configuration will ensure that the pipeline only runs when a merge is made to the `main` or `master` branch:
 1) Stages: Defines the stages of the pipeline, here will be only the json validation stage for now.

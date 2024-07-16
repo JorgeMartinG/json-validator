@@ -1,0 +1,24 @@
+{
+    "example-1": {
+        "example-1": "example",
+        "example-2": {
+            "example-3": "example",
+            "example-4": {
+                "example-5": {
+                    "example-6": "example",
+                    "example-7": 100,
+                    "example-8": 200,
+                    "example-9": {
+                        "example-10": "example",
+                        "example-11": [
+                            "example",
+                            true
+                        ]
+                    },
+                    "example-12": "example",
+                    "example-13": false
+                }
+            }
+        }
+    }
+}
